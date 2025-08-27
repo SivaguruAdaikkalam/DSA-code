@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+int minOperatins(int arr[],int n) {
+    int i = 0, j = n - 1;
+    int count = 0;
+
+    while (i < j) {
+        if(arr[i]==arr[j]) {
+            i++;
+            j--;
+        } else if (arr[i] > arr[j]) {
+            arr[j - 1] += arr[j];
+            j--;
+            count++;
+        } else {
+            arr[i + 1] += arr[i];
+            i++;
+            count++;
+        }
+    }
+
+    return count;
+}
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    int arr[100];
+
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int result = minOperatins(arr,n);
+
+    if (result == 0) {
+        printf("array is already a palindrome\n");
+        printf("Minimum no of merge operations took is %d\n", result);
+    } else {
+        printf("Minimum no of merge operations took is %d\n", result);
+    }
+
+    return 0;
+}
